@@ -11,7 +11,7 @@ int main()
 
     while (sfRenderWindow_isOpen(window)) // check if window is open
     {
-        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+        if (sfKeyboard_isKeyPressed(sfKeyEscape)) // Presse Escape for Exit
             break;
     }
     sfRenderWindow_close(window); //close window
