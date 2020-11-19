@@ -12,7 +12,7 @@ int main()
     sfRenderWindow *window = sfRenderWindow_create(mode, "HUNTER", sfResize | sfClose, NULL);
     int count = 0;
 
-    sfClock *clock = sfClock_create();
+    sfClock *clock = sfClock_create(); // create new clock
     sfTime time;
 
 
@@ -21,10 +21,10 @@ int main()
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             break;
 
-        time = sfClock_getElapsedTime(clock);
-        if (sfTime_asSeconds(time) > 1) {
+        time = sfClock_getElapsedTime(clock); // sfClock_getElapsedTime
+        if (sfTime_asSeconds(time) > 1) { // stransforme sf Time to seconde
             count += 1;
-            sfClock_restart(clock);
+            sfClock_restart(clock); // restart clock
         }
     }
     sfRenderWindow_close(window);

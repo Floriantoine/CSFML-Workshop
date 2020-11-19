@@ -6,6 +6,19 @@
 
 int NumberOfFrame = 5;
 
+
+sfBool checktime(sfClock *clock)
+{
+    sfTime time;
+
+    time = sfClock_getElapsedTime(clock);
+    if (sfTime_asMilliseconds(time) > 300) {
+        sfClock_restart(clock);
+        return sfTrue;
+    }
+    return sfFalse;
+}
+
 void initRect(sfTexture *texture, sfIntRect *target)
 {
     target->top = 0;
@@ -37,7 +50,6 @@ int main()
     sfTexture *texture = sfTexture_createFromFile("./turtle.png", NULL);
     sfSprite *sprite = sfSprite_create();
     sfClock *clock = sfClock_create();
-    sfTime time;
     sfIntRect rect;
     int currentStep = 0;
 
@@ -56,10 +68,7 @@ int main()
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             sfRenderWindow_close(window);
 
-        time = sfClock_getElapsedTime(clock);
-        if (sfTime_asMilliseconds(time) > 300) {
-            sfClock_restart(clock);
-
+        if (checktime(clock) == sfTrue) {
             sfRenderWindow_clear(window, sfColor_fromRGB(255, 255, 255));
             nextStep(&currentStep, &rect, sprite);
             sfRenderWindow_drawSprite(window, sprite, NULL);
