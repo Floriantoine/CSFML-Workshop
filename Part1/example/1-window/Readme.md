@@ -28,6 +28,13 @@ sfRenderWindow *window = sfRenderWindow_create(mode, "HUNTER", sfResize | sfClos
 
 ---
 
+## sfRenderWindow_clear(sfRenderWindow *, sfColor)
+
+>apply a color to the whole screen
+
+---
+
+
 ## sfRenderWindow_isOpen(sfRenderWindow *)
 
 >return True if the window is Open else False
