@@ -1,4 +1,5 @@
 #include<SFML/Graphics.h>
+#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Keyboard.h>
 
@@ -8,6 +9,7 @@ int main()
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, "HUNTER", sfResize | sfClose, NULL);
     sfRenderWindow_clear(window, sfColor_fromRGB(255, 255, 255));
+    sfEvent event;
 
     sfTexture *texture = sfTexture_createFromFile("./goomba.png", NULL); //Create a texture based on a file
     sfSprite *sprite = sfSprite_create(); // Create a Sprite
@@ -23,8 +25,12 @@ int main()
 
     while (sfRenderWindow_isOpen(window))
     {
-        if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            sfRenderWindow_close(window);
+
+        while (sfRenderWindow_pollEvent(window, &event))
+        {
+            if (sfKeyboard_isKeyPressed(sfKeyEscape))
+                sfRenderWindow_close(window);
+        }
         if (sfKeyboard_isKeyPressed(sfKeySpace)) {
             sfSprite_setPosition(sprite, newPos); // Updated the position of the sprite
 
